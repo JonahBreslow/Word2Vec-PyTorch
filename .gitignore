@@ -1,3 +1,6 @@
+# virtual environment
+.venv38/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
