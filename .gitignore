@@ -1,6 +1,9 @@
 # virtual environment
 .venv38/
 
+# saved models
+word2vec_models/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
