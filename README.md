@@ -18,4 +18,4 @@ A PyTorch implementation of word2vec embeddings!
 ```
 
 ### Overview
-This repository contains a skipgram-based word2vec implementation based off of (Efficient Estimation of Word Representations in Vector Space)[https://arxiv.org/pdf/1301.3781.pdf] by Mikolov et al. with the negative sampling and subsampling enhancements put forth in (Distributed Representations of Words and Phrases and their Compositionality)[https://proceedings.neurips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf].
+This repository contains a skipgram-based word2vec implementation based off of [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/pdf/1301.3781.pdf) by Mikolov et al. with the negative sampling and subsampling enhancements put forth in [Distributed Representations of Words and Phrases and their Compositionality](https://proceedings.neurips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf).
