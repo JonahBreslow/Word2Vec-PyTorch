@@ -5,15 +5,15 @@ A PyTorch implementation of word2vec embeddings!
 
 ```
 ├── src/                   
-│   ├── __init__.py            # Python package file
+│   ├── __init__.py            
 │   ├── model.py               # Skipgram word2vec model class
-│   ├── negative_sampler.py    # Class to generate random negative samples for faster training
-│   ├── params.py              # Dataclass that manages all parameters of the codebase
-│   ├── skipgrams.py           # Class that contains a method to collate data for PyTorch dataloaders
-│   ├── trainer.py             # Class that contains methods to train the PyTorch network
+│   ├── negative_sampler.py    # Negative sampling for faster training
+│   ├── params.py              # Parameters of the codebase
+│   ├── skipgrams.py           # Collate data for PyTorch dataloaders
+│   ├── trainer.py             # Train the PyTorch network
 │   └── vocab.py               # Vocabulary class 
-├── word2vec_models/           # Directory that has all the 
-├── main.py                    # Entrypoint to code base. Executes model training with all the parameters given in src/params.py
+├── word2vec_models/           # Directory for model files and checkpoints
+├── main.py                    # Entrypoint to code base
 ├── model_playground.ipynb     # Notebook to experiment with the learned embeddings.
 ```
 
