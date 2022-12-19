@@ -10,18 +10,16 @@ from src.vocab import Vocab
 class SkipGrams:
     def __init__(self, vocab: Vocab, params: Word2VecParams, tokenizer):
         self.vocab = vocab
-        self.T = params.T
-        self.t = self._t() # TODO - replace with _t() method to automate this parameter tune
+        self.params = params
+        self.t = self._t()
         self.tokenizer = tokenizer
-        self.skipgram_n_words = params.SKIPGRAM_N_WORDS
-        self.max_sequence_len = params.MAX_SEQUENCE_LENGTH
         self.discard_probs = self._create_discard_dict()
 
     def _t(self):
         freq_list = []
         for _, (_, freq) in list(self.vocab.stoi.items())[1:]:
             freq_list.append(freq/self.vocab.total_tokens)
-        return np.percentile(freq_list, self.T)
+        return np.percentile(freq_list, self.params.T)
         
 
     def _create_discard_dict(self):
@@ -35,20 +33,19 @@ class SkipGrams:
     def collate_skipgram(self, batch):
         batch_input, batch_output  = [], []
         for text in batch:
-            self.tokenizer(text)
             text_tokens_ids = self.vocab.get_index(self.tokenizer(text))
 
-            if len(text_tokens_ids) < self.skipgram_n_words * 2 + 1:
+            if len(text_tokens_ids) < self.params.SKIPGRAM_N_WORDS * 2 + 1:
                 continue
 
-            if self.max_sequence_len:
-                text_tokens_ids = text_tokens_ids[:self.max_sequence_len]
+            if self.params.MAX_SEQUENCE_LENGTH:
+                text_tokens_ids = text_tokens_ids[:self.params.MAX_SEQUENCE_LENGTH]
 
-            for idx in range(len(text_tokens_ids) - self.skipgram_n_words*2):
+            for idx in range(len(text_tokens_ids) - self.params.SKIPGRAM_N_WORDS*2):
                 token_id_sequence = text_tokens_ids[
-                    idx : (idx + self.skipgram_n_words * 2 + 1)
+                    idx : (idx + self.params.SKIPGRAM_N_WORDS * 2 + 1)
                     ]
-                input_ = token_id_sequence.pop(self.skipgram_n_words)
+                input_ = token_id_sequence.pop(self.params.SKIPGRAM_N_WORDS)
                 outputs = token_id_sequence
 
                 prb = random.random()
